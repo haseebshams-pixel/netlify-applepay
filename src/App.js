@@ -69,8 +69,8 @@ const App = () => {
   useEffect(() => {
     if (stripe && paymentRequest === null) {
       const pr = stripe.paymentRequest({
-        country: "PK",
-        currency: "pkr",
+        country: "US",
+        currency: "usd",
         total: {
           label: "Demo total",
           amount: totalPrice + 350,

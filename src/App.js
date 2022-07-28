@@ -59,13 +59,14 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (stripe) {
+    if (stripe && paymentRequest === null) {
       const pr = stripe.paymentRequest({
         country: "US",
         currency: "usd",
         total: {
           label: "Demo total",
-          amount: 1350,
+          amount: totalPrice + 350,
+          pending: true,
         },
         requestPayerName: true,
         requestPayerEmail: true,
@@ -74,7 +75,7 @@ const App = () => {
           {
             id: "standard-global",
             label: "Global shipping",
-            detail: "Arrives in 5 to 7 days",
+            detail: "Handling and delivery fee",
             amount: 350,
           },
         ],
@@ -82,15 +83,31 @@ const App = () => {
       // Check the availability of the Payment Request API first.
       pr.canMakePayment().then((result) => {
         if (result) {
-          pr.on("paymentmethod", handlePaymentMethodReceived);
           setPaymentRequest(pr);
         }
       });
     }
-  }, [stripe]);
+  }, [stripe, paymentRequest, totalPrice]);
+
+  useEffect(() => {
+    if (paymentRequest) {
+      paymentRequest.update({
+        total: {
+          label: "Demo total",
+          amount: totalPrice + 350,
+          pending: false,
+        },
+      });
+    }
+  }, [totalPrice, paymentRequest]);
 
   if (paymentRequest) {
-    return <PaymentRequestButtonElement options={{ paymentRequest }} />;
+    return (
+      <PaymentRequestButtonElement
+        options={{ paymentRequest }}
+        onClick={handleButtonClicked}
+      />
+    );
   }
 
   // Use a traditional checkout form.

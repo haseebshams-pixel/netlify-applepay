@@ -7,6 +7,14 @@ import {
 const App = () => {
   const stripe = useStripe();
   const [paymentRequest, setPaymentRequest] = useState(null);
+  const [totalPrice, setPrice] = useState(100);
+  const handleButtonClicked = (event) => {
+    paymentRequest.on("paymentmethod", handlePaymentMethodReceived);
+    paymentRequest.on("cancel", () => {
+      paymentRequest.off("paymentmethod");
+    });
+    return;
+  };
   const handlePaymentMethodReceived = async (event) => {
     // Send the payment details to our function.
     const paymentDetails = {

@@ -20,11 +20,11 @@ const stripePromise = loadStripe(
 // );
 const Base = () => {
   return (
-    <BrowserRouter>
+    <React.StrictMode>
       <Elements stripe={stripePromise}>
         <App />
       </Elements>
-    </BrowserRouter>
+    </React.StrictMode>
   );
 };
 

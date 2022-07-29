@@ -10,14 +10,27 @@ const stripePromise = loadStripe(
   "pk_test_51JNtd5EEWahky04aXtU0xPztXhqL1Mhh3DkpornhvXZMEMNSSizYwx2LqsGDpmVcRmcRgntP9dC5oeCAJNxsb6zm00ICxZ3Nzm"
 );
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <Elements stripe={stripePromise}>
-      <App />
-    </Elements>
-  </React.StrictMode>
-);
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(
+//   <React.StrictMode>
+//     <Elements stripe={stripePromise}>
+//       <App />
+//     </Elements>
+//   </React.StrictMode>
+// );
+const Base = () => {
+  return (
+    <BrowserRouter>
+      <Elements stripe={stripePromise}>
+        <App />
+      </Elements>
+    </BrowserRouter>
+  );
+};
+
+const rootElement = document.getElementById("root");
+
+ReactDOM.render(<Base />, rootElement);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

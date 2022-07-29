@@ -93,7 +93,6 @@ const App = () => {
         if (result) {
           setPaymentRequest(pr);
         }
-        setPaymentRequest(pr);
       });
     }
   }, [stripe, paymentRequest, totalPrice]);

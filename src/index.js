@@ -6,7 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
+const stripePromise = loadStripe(
+  "pk_test_51JNtd5EEWahky04aXtU0xPztXhqL1Mhh3DkpornhvXZMEMNSSizYwx2LqsGDpmVcRmcRgntP9dC5oeCAJNxsb6zm00ICxZ3Nzm"
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

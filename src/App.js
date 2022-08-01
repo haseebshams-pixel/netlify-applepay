@@ -70,7 +70,7 @@ const App = () => {
     if (stripe && paymentRequest === null) {
       const pr = stripe.paymentRequest({
         country: "US",
-        currency: "USD",
+        currency: "usd",
         total: {
           label: "Demo total",
           amount: totalPrice + 350,
